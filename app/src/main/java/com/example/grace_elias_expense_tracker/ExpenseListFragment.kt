@@ -25,7 +25,7 @@ class ExpenseListFragment : Fragment() {
             "Cannot access binding because it is null. Is the view visible?"
         }
 
-    private val crimeListViewModel: ExpenseListViewModel by viewModels()
+    private val expenseListViewModel: ExpenseListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +44,7 @@ class ExpenseListFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                ExpenseListViewModel.expenses.collect { expenses ->
+                expenseListViewModel.expenses.collect { expenses ->
                     binding.expenseRecyclerView.adapter =
                         ExpenseListAdapter(expenses) { expenseId ->
                             findNavController().navigate(
